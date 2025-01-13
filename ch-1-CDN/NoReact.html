@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>without React</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const heading = document.createElement("h1");
+        heading.innerHTML = "Hello this is a heading with java script";
+
+        const paragraph = document.createElement("p");
+        paragraph.innerHTML = "Hello this is a paragraph with java script";
+
+        const root = document.getElementById("root");
+        root.appendChild(heading);
+        root.appendChild(paragraph);
+    </script>
+</body>
+
+</html>
