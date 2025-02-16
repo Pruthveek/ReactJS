@@ -1,8 +1,7 @@
 import React from "react";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { RestaurantsList } from "./config";
 import Card from "./restaurantCard";
-
 
 const Body = () => {
   // const searchText="Pizza";
@@ -10,18 +9,22 @@ const Body = () => {
   const [toggleValue, setToggleValue] = useState("true");
   const [restaurants, setRestaurants] = useState(RestaurantsList);
 
-  useEffect(()=>{
+  useEffect(() => {
     getRestaurants();
-  })
-  async function getRestaurants(){
-    const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-    const json=await data.json();
+  });
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=23.0330818&lng=72.6486334&carousel=true&third_party_vendor=1"
+    );
+    const json = await data.json();
     console.log(json);
+    setRestaurants(json.data?.cards?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    console.log(restaurants)
   }
   console.log("render");
   function filterData(searchInput) {
     const filterData = RestaurantsList.filter((restorent) =>
-      (restorent.info.name).toLowerCase().includes(searchInput.toLowerCase())
+      restorent.info.name.toLowerCase().includes(searchInput.toLowerCase())
     );
     return filterData;
   }
@@ -30,6 +33,7 @@ const Body = () => {
       <div class="search-container">
         <input
           type="text"
+          id="serch-box"
           className="search-input"
           placeholder="Search"
           value={searchInput}
@@ -66,7 +70,7 @@ const Body = () => {
       </div>
       <div className="BodyPart">
         {restaurants.map((restaurants) => {
-          return <Card {...restaurants?.info}  key={restaurants?.info?.id}/>;
+          return <Card {...restaurants?.info} key={restaurants?.info?.id} />;
         })}
       </div>
     </>
