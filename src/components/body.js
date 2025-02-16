@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { RestaurantsList } from "./config";
 import Card from "./restaurantCard";
 
@@ -9,6 +9,16 @@ const Body = () => {
   const [searchInput, setSearchInput] = useState();
   const [toggleValue, setToggleValue] = useState("true");
   const [restaurants, setRestaurants] = useState(RestaurantsList);
+
+  useEffect(()=>{
+    getRestaurants();
+  })
+  async function getRestaurants(){
+    const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const json=await data.json();
+    console.log(json);
+  }
+  console.log("render");
   function filterData(searchInput) {
     const filterData = RestaurantsList.filter((restorent) =>
       (restorent.info.name).toLowerCase().includes(searchInput.toLowerCase())
@@ -56,7 +66,7 @@ const Body = () => {
       </div>
       <div className="BodyPart">
         {restaurants.map((restaurants) => {
-          return <Card {...restaurants.info} />;
+          return <Card {...restaurants?.info}  key={restaurants?.info?.id}/>;
         })}
       </div>
     </>
