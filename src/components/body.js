@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./restaurantCard";
 import Shimmer from "./shimmerui";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -21,9 +22,10 @@ const Body = () => {
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await response.json();
-
+      console.log(json);
       const fetchedRestaurants =
-        json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+        json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants || [];
 
       setRestaurants(fetchedRestaurants);
       setFilteredRestaurants(fetchedRestaurants);
@@ -74,13 +76,15 @@ const Body = () => {
         </button>
       </div>
 
-      {loading && <Shimmer/>}
+      {loading && <Shimmer />}
       {error && <p className="error">{error}</p>}
 
       <div className="BodyPart">
         {filteredRestaurants.length > 0 ? (
           filteredRestaurants.map((restaurant) => (
-            <Card {...restaurant.info} key={restaurant.info.id} />
+            <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id} className="card-link">
+              <Card {...restaurant.info}  />
+            </Link>
           ))
         ) : (
           <p>No restaurants found.</p>

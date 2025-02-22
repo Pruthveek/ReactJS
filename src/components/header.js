@@ -1,37 +1,39 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Logo = () => (
-  <a href="/">
+  <Link to="/">
     <img
       className="logo"
       src="https://static.vecteezy.com/system/resources/previews/005/100/624/large_2x/food-logo-free-vector.jpg"
       alt="logo"
     />
-  </a>
+  </Link> 
 );
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="header">
       <Logo />
       <div className="nav-items">
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link> 
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link> 
           </li>
           <li>
-            <a href="/contact">Contact</a>
+            <Link to="/contactus">Contact</Link> 
           </li>
           <li>
-            <a href="/cart">Cart</a>
+            <Link to="/cart">Cart</Link> 
           </li>
         </ul>
       </div>
       <div>
+      <Link to="/login"><button className="login-out">Log Out</button></Link>
       {isLoggedIn ? (<button className="login-out" onClick={()=>setIsLoggedIn(false)}>Log Out</button>) : <button className="login-out" onClick={()=>setIsLoggedIn(true)}>Log In</button>}
       </div>
       
