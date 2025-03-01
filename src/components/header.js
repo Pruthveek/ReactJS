@@ -33,8 +33,7 @@ const Header = () => {
         </ul>
       </div>
       <div>
-      <Link to="/login"><button className="login-out">Log Out</button></Link>
-      {isLoggedIn ? (<button className="login-out" onClick={()=>setIsLoggedIn(false)}>Log Out</button>) : <button className="login-out" onClick={()=>setIsLoggedIn(true)}>Log In</button>}
+      {isLoggedIn ? (<button className="login-out" onClick={()=>setIsLoggedIn(false)}>Log Out</button>) : <Link to="/login"><button className="login-out" onClick={()=>setIsLoggedIn(true)}>Log In</button></Link>}
       </div>
       
     </div>

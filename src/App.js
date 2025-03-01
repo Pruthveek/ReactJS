@@ -7,14 +7,16 @@ import About from "./components/aboutus";
 import Contact from "./components/contactus";
 import Error from "./components/error";
 import RestaurantMenu from "./components/restaurantMenu";
-import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Login from "./components/login";
+import ProfileClass from "./components/ProfileClass";
+import Profile from "./components/Profile";
 
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <Outlet/>
+      <Outlet />
       <Footer />
     </>
   );
@@ -33,6 +35,18 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        children: [
+          {
+            path: "profileclass",
+            element: <ProfileClass />,
+            errorElement: <Error />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+            errorElement: <Error />,
+          },
+        ]
       },
       {
         path: "/contactus",
@@ -40,13 +54,12 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurant/:id",
-        element: <RestaurantMenu/>,
+        element: <RestaurantMenu />,
       },
       {
         path: "/login",
-        element: <Login/>,
+        element: <Login />,
       },
-      
     ],
   },
 ]);

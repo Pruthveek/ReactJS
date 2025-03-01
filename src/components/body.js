@@ -24,7 +24,7 @@ const Body = () => {
       const json = await response.json();
       console.log(json);
       const fetchedRestaurants =
-        json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
 
       setRestaurants(fetchedRestaurants);

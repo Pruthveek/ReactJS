@@ -1,4 +1,6 @@
 import React from "react";
+import ProfileClass from "./ProfileClass";
+import { Link, Outlet } from "react-router-dom";
 
 const About = () => {
   return (
@@ -21,6 +23,10 @@ const About = () => {
           Join us on this journey as we explore new horizons and redefine the
           standards of excellence.
         </p>
+        <Link to="profileclass">View Profile From Class Component</Link><br/>
+        <Link to="profile">View Profile From Functional Component</Link>
+        <Outlet/>
+
       </div>
     </div>
   );

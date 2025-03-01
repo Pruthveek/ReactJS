@@ -571,6 +571,7 @@ h2 {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 280px;
 }
 
 .login-btn {
@@ -599,4 +600,42 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.profile-container {
+  text-align: center;
+  background-color: #e0f7fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: 50px auto;
+  font-family: Arial, sans-serif;
+}
+
+.profile-container img {
+  border-radius:100%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+  margin-bottom: 10px;
+}
+
+.profile-container h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.profile-container h2 {
+  font-size: 20px;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.profile-container h3 {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
 }
