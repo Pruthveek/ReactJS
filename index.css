@@ -639,3 +639,169 @@ a:hover {
   color: #666;
   margin-bottom: 5px;
 }
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.swiggy-mart {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.mart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ff671b;
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.mart-header input {
+  padding: 8px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+}
+
+.categories {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.categories button {
+  padding: 8px 12px;
+  border: none;
+  background: #ff671b;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  background: white;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.product-card button {
+  background: #ff671b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.shimmer-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.shimmer-header {
+  display: flex;
+  justify-content: space-between;
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.shimmer-search {
+  width: 200px;
+  height: 30px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-categories {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.shimmer-btn {
+  width: 80px;
+  height: 30px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.shimmer-card {
+  border-radius: 10px;
+  padding: 10px;
+  background: #f0f0f0;
+  text-align: center;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-img {
+  width: 100px;
+  height: 100px;
+  background: #e0e0e0;
+  margin: auto;
+  border-radius: 5px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-title,
+.shimmer-price {
+  width: 80%;
+  height: 20px;
+  background: #e0e0e0;
+  margin: 10px auto;
+  border-radius: 5px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-btn-sm {
+  width: 60%;
+  height: 30px;
+  background: #e0e0e0;
+  margin: auto;
+  border-radius: 5px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background: #e0e0e0;
+  }
+  50% {
+    background: #d4d4d4;
+  }
+  100% {
+    background: #e0e0e0;
+  }
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/header";
 import Body from "./components/body";
@@ -11,6 +11,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Login from "./components/login";
 import ProfileClass from "./components/ProfileClass";
 import Profile from "./components/Profile";
+import InstaMartShimmer from "./components/InstamartShimmerui";
+
+const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
   return (
@@ -22,6 +25,13 @@ const AppLayout = () => {
   );
 };
 
+guardian = (props) => {
+  if (localStorage.getItem("token")) {
+    return <Outlet {...props} />;
+  } else {
+    return <Login />;
+  }
+};
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +56,7 @@ const appRouter = createBrowserRouter([
             element: <Profile />,
             errorElement: <Error />,
           },
-        ]
+        ],
       },
       {
         path: "/contactus",
@@ -59,6 +69,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<InstaMartShimmer/>}>
+            <Instamart/>
+          </Suspense>
+        ),
       },
     ],
   },
