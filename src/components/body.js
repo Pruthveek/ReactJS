@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "./restaurantCard";
 import Shimmer from "./shimmerui";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/userContext";
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -10,6 +11,8 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { user, setUser } = useContext(UserContext); // Ensure we use setUser from context
 
   useEffect(() => {
     getRestaurants();
@@ -64,6 +67,21 @@ const Body = () => {
         <button className="search-button" onClick={handleSearch}>
           Search
         </button>
+
+        <input
+          type="text"
+          value={user.name}
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
+          className="search-input"
+          placeholder="Enter name"
+        />
+        <input
+          type="email"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          className="search-input"
+          placeholder="Enter email"
+        />
       </div>
 
       <div className="toggle-container">
@@ -82,8 +100,12 @@ const Body = () => {
       <div className="BodyPart">
         {filteredRestaurants.length > 0 ? (
           filteredRestaurants.map((restaurant) => (
-            <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id} className="card-link">
-              <Card {...restaurant.info}  />
+            <Link
+              to={"/restaurant/" + restaurant.info.id}
+              key={restaurant.info.id}
+              className="card-link"
+            >
+              <Card {...restaurant.info} />
             </Link>
           ))
         ) : (

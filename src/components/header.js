@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useOnline from "../hook/useOnline";
+import UserContext from "../utils/userContext";
 
 export const Logo = () => (
   <Link to="/">
@@ -16,6 +17,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   return (
     <div className="header">
@@ -54,9 +56,12 @@ const Header = () => {
           >
             Log In
           </button>
-        )}<h6>{isOnline ? "🟢" : "🔴"}</h6>
+        )}
+        <h3>
+          {user.name}
+          {isOnline ? "😊" : "🥶"}
+        </h3>
       </div>
-      
     </div>
   );
 };
