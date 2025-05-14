@@ -1,25 +1,17 @@
-import { useEffect, useState ,useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import UserContext from "../utils/userContext";
 
 const Profile = (props) => {
-  const {user}=useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [userInformation, setUserInformation] = useState();
+
   useEffect(() => {
     profileData();
-    // const timer=setInterval(()=>{
-    //     console.log("hello")
-    // },1000);
-    // return () => {
-    //     clearInterval(timer);
-    //   console.log("Component Unmounted");
-    // };
   }, []);
 
   const profileData = async () => {
-    
     const data = await fetch("https://api.github.com/users/Pruthveek");
     const json = await data.json();
-    console.log(json);
     setUserInformation(json);
   };
 
@@ -30,7 +22,15 @@ const Profile = (props) => {
       <h2>NAME : {userInformation?.login}</h2>
       <h3>{user.name}</h3>
       <h3>{user.email}</h3>
+      <div>
+       <h3>{user.public_repos}</h3>
+        <progress value="56" max="100" className="progress-bar"></progress>
+      </div>
+      <div className="chack-box">
+
+      </div>
     </div>
   );
 };
+
 export default Profile;

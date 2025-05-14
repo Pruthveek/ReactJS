@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useOnline from "../hook/useOnline";
 import UserContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 
 export const Logo = () => (
   <Link to="/">
@@ -14,10 +15,24 @@ export const Logo = () => (
 );
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("token") // Simulate persisted login
+  );
   const isOnline = useOnline();
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const handleLoginLogout = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("token");
+      setIsLoggedIn(false);
+    } else {
+      localStorage.setItem("token", "fake_token"); // Simulate login
+      setIsLoggedIn(true);
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="header">
@@ -34,32 +49,19 @@ const Header = () => {
             <Link to="/contactus">Contact</Link>
           </li>
           <li>
-            <Link to="/cart">Cart</Link>
+            <Link to="/instamart">InstaMart</Link>
           </li>
           <li>
-            <Link to="/instamart">InstaMart</Link>
+            <Link to="/cart">🛒<sup>{cartItems.length}</sup></Link>
           </li>
         </ul>
       </div>
       <div className="nav-buttons">
-        {isLoggedIn ? (
-          <button className="login-out" onClick={() => setIsLoggedIn(false)}>
-            Log Out
-          </button>
-        ) : (
-          <button
-            className="login-out"
-            onClick={() => {
-              setIsLoggedIn(true);
-              navigate("/login");
-            }}
-          >
-            Log In
-          </button>
-        )}
+        <button className="login-out" onClick={handleLoginLogout}>
+          {isLoggedIn ? "Log Out" : "Log In"}
+        </button>
         <h3>
-          {user.name}
-          {isOnline ? "😊" : "🥶"}
+          {user.name} {isOnline ? "😊" : "🥶"}
         </h3>
       </div>
     </div>

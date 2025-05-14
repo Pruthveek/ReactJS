@@ -38,7 +38,8 @@ const Login = () => {
         {isEmail === false && (
           <input type="text" placeholder="Enter 4-digit OTP" maxLength="4" className="input-field" />
         )}
-        <button className="login-btn">Login</button>
+        <Link to="/"> <button className="login-btn">Login</button></Link>
+        
         <p>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
